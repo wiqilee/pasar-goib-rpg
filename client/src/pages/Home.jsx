@@ -9,6 +9,18 @@ export default function Home() {
   const [loading, setLoading] = useState(true);
   const [err, setErr] = useState('');
 
+  // ---- BASE-URL SAFE HELPERS (dev '/' and GH Pages '/repo/')
+  const BASE = (import.meta.env.BASE_URL ?? '/');
+  const joinBase = (p) => {
+    const b = BASE.endsWith('/') ? BASE.slice(0, -1) : BASE;
+    const s = String(p || '');
+    return `${b}/${s.replace(/^\//, '')}`;
+  };
+
+  const bannerUrl = joinBase('assets/banner-nightmarket.png');
+  const hrefPlay  = joinBase('play');
+  const hrefLore  = joinBase('lore');
+
   useEffect(() => {
     let alive = true;
     (async () => {
@@ -57,11 +69,11 @@ export default function Home() {
 
       {/* Banner */}
       <div className="overflow-hidden rounded-2xl border border-slate-800">
-      <img
-        src="/assets/banner-nightmarket.png"
-        alt="Pasar Goib Night Market"
-        className="w-full max-h-[400px] object-contain rounded-xl"
-      />
+        <img
+          src={bannerUrl}
+          alt="Pasar Goib Night Market"
+          className="w-full max-h-[400px] object-contain rounded-xl"
+        />
       </div>
 
       {/* Storytelling intro */}
@@ -80,7 +92,7 @@ export default function Home() {
 
           <div className="mt-5 flex flex-wrap gap-3 items-center">
             <a
-              href="/play"
+              href={hrefPlay}
               className={`rounded-xl px-4 py-2 text-white relative ${
                 hasQuests
                   ? 'bg-emerald-600 hover:bg-emerald-500 ring-2 ring-emerald-400/40 animate-pulse'
@@ -91,7 +103,7 @@ export default function Home() {
               Enter the Market
             </a>
             <a
-              href="/lore"
+              href={hrefLore}
               className="rounded-xl px-4 py-2 bg-slate-800 hover:bg-slate-700 border border-slate-700"
             >
               Read the Lore
@@ -146,7 +158,7 @@ export default function Home() {
         )}
         <div className="mt-3">
           <a
-            href="/lore"
+            href={hrefLore}
             className="inline-block rounded-lg px-3 py-2 bg-slate-800 hover:bg-slate-700 border border-slate-700 text-sm"
           >
             Open full quest catalog
