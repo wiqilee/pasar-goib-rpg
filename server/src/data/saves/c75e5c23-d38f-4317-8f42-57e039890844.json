@@ -1,0 +1,263 @@
+{
+  "player": {
+    "name": "Wanderer",
+    "health": 100,
+    "reputation": 0,
+    "skills": {
+      "strength": 2,
+      "agility": 1,
+      "charisma": 1
+    }
+  },
+  "location": "shadow_lane",
+  "map": {
+    "moon_gate": {
+      "name": "Moon Gate",
+      "exits": [
+        "spirit_bazaar",
+        "exit_road"
+      ]
+    },
+    "spirit_bazaar": {
+      "name": "Spirit Bazaar",
+      "exits": [
+        "mask_stalls",
+        "shadow_lane",
+        "oracle_tent",
+        "moon_gate"
+      ]
+    },
+    "mask_stalls": {
+      "name": "Mask Stalls",
+      "exits": [
+        "spirit_bazaar"
+      ]
+    },
+    "shadow_lane": {
+      "name": "Shadow Lane",
+      "exits": [
+        "spirit_bazaar"
+      ]
+    },
+    "oracle_tent": {
+      "name": "Oracle Tent",
+      "exits": [
+        "spirit_bazaar"
+      ]
+    },
+    "exit_road": {
+      "name": "Old Road",
+      "exits": [
+        "moon_gate"
+      ]
+    }
+  },
+  "npcs": {
+    "maskmonger": {
+      "id": "maskmonger",
+      "name": "Maskmonger",
+      "location": "mask_alley",
+      "affinity": 0,
+      "persona": "Cryptic vendor of fate-bound masks.",
+      "dialog": [
+        {
+          "id": "root",
+          "text": "Masks for every fate. Seeking wares or seeking work?",
+          "choices": [
+            {
+              "id": "see_wares",
+              "label": "Buy a Plain Mask",
+              "effect": {
+                "inventory_add": [
+                  "Plain Mask"
+                ],
+                "reputation_delta": 1
+              },
+              "next": "root"
+            },
+            {
+              "id": "ask_work",
+              "label": "Ask about work",
+              "effect": {
+                "quest_offer": "shadow_run"
+              },
+              "next": "work_given"
+            }
+          ]
+        },
+        {
+          "id": "work_given",
+          "text": "Bring me three slivers of Moon-essence from Lantern Row.",
+          "choices": [
+            {
+              "id": "ack",
+              "label": "Got it",
+              "effect": {},
+              "next": "root"
+            }
+          ]
+        }
+      ]
+    },
+    "gate_twins": {
+      "id": "gate_twins",
+      "name": "Gate Twins",
+      "location": "gate",
+      "affinity": 0,
+      "persona": "Two siblings who watch the bazaar entrances.",
+      "dialog": [
+        {
+          "id": "root",
+          "text": "Mind your bargains, wanderer.",
+          "choices": [
+            {
+              "id": "nod",
+              "label": "Nod respectfully",
+              "effect": {
+                "reputation_delta": 1
+              },
+              "next": "root"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "inventory": [],
+  "quests": [],
+  "flags": {},
+  "history": [
+    {
+      "action": null,
+      "narrative": "Under the full moon, you arrive at the Pasar Goib.\nThe Gate Twins eye your steps."
+    },
+    {
+      "action": "talk to Maskmonger",
+      "narrative": "No one answers that name here.",
+      "roll": {
+        "value": 6,
+        "meaning": "fail"
+      }
+    },
+    {
+      "action": "talk to Maskmonger",
+      "narrative": "No one answers that name here.",
+      "roll": {
+        "value": 16,
+        "meaning": "success"
+      }
+    },
+    {
+      "action": "go to spirit bazaar",
+      "narrative": "You arrive at Spirit Bazaar.",
+      "roll": {
+        "value": 19,
+        "meaning": "success"
+      }
+    },
+    {
+      "action": "talk to Maskmonger",
+      "narrative": "No one answers that name here.",
+      "roll": {
+        "value": 14,
+        "meaning": "partial"
+      }
+    },
+    {
+      "action": "inventory",
+      "narrative": "Inventory: (empty).\nReputation: 0",
+      "roll": {
+        "value": 10,
+        "meaning": "partial"
+      }
+    },
+    {
+      "action": "go to shadow lane",
+      "narrative": "You arrive at Shadow Lane.",
+      "roll": {
+        "value": 9,
+        "meaning": "fail"
+      }
+    }
+  ],
+  "lore": "A night market appears under a full moon; trades run on names, memories, and shadows.",
+  "suggested": [
+    "go to spirit bazaar",
+    "look around",
+    "inventory",
+    "talk to Maskmonger",
+    "talk to Gate Twins",
+    "attack shade",
+    "attack nearby enemy"
+  ],
+  "enemies": [
+    {
+      "id": "shade1",
+      "name": "Moon Shade",
+      "hp": 10,
+      "atk": 3,
+      "location": "shadow_lane",
+      "hostile": true
+    },
+    {
+      "id": "shade2",
+      "name": "Whisper Shade",
+      "hp": 8,
+      "atk": 2,
+      "location": "spirit_bazaar",
+      "hostile": true
+    }
+  ],
+  "_questDefs": [
+    {
+      "id": "shadow_run",
+      "title": "Errand for the Maskmonger",
+      "desc": "Collect three Moon-essence slivers and return to the Maskmonger.",
+      "stages": [
+        {
+          "id": "accept",
+          "desc": "Speak with the Maskmonger and accept the errand.",
+          "start_triggers": [
+            "ask about work",
+            "work",
+            "accept work"
+          ],
+          "complete_triggers": [
+            "accept work",
+            "got it",
+            "i accept"
+          ]
+        },
+        {
+          "id": "gather",
+          "desc": "Collect 3 Moon-essence at Lantern Row.",
+          "complete_condition": {
+            "flag": "essence_count",
+            "atLeast": 3
+          }
+        },
+        {
+          "id": "return",
+          "desc": "Return to the Maskmonger in Mask Alley.",
+          "complete_triggers": [
+            "return to maskmonger",
+            "deliver essence",
+            "give essence"
+          ]
+        }
+      ],
+      "rewards": {
+        "reputation": 5,
+        "items": [
+          "Lunar Mask"
+        ]
+      }
+    }
+  ],
+  "presence": {
+    "O1XosrC9ic6RvgvVAAAD": {
+      "id": "O1XosrC9ic6RvgvVAAAD",
+      "name": "Wanderer"
+    }
+  }
+}

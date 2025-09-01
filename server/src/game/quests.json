@@ -1,0 +1,33 @@
+[
+    {
+      "id": "maskmonger_moon_essence",
+      "title": "Errand for the Maskmonger",
+      "desc": "Collect moon essence for the Maskmonger within the Spirit Bazaar and return it.",
+      "stages": [
+        {
+          "id": "offer",
+          "start_triggers": ["ask about work", "any work", "job", "work"],
+          "next": "gather",
+          "suggested": ["talk to Maskmonger", "search for moon essence", "go to Spirit Bazaar"]
+        },
+        {
+          "id": "gather",
+          "complete_condition": {
+            "flag_at_least": { "essence_count": 3 }
+          },
+          "next": "return",
+          "suggested": ["search for moon essence", "return to Maskmonger"]
+        },
+        {
+          "id": "return",
+          "complete_triggers": ["return to maskmonger", "give essence", "hand over essence"],
+          "rewards": {
+            "reputation_delta": 2,
+            "inventory_add": ["Whispering Mask"]
+          },
+          "suggested": ["wear the whispering mask"]
+        }
+      ]
+    }
+  ]
+  

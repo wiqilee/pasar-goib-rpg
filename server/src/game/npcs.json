@@ -1,0 +1,150 @@
+[
+    {
+      "id": "maskmonger",
+      "name": "Maskmonger",
+      "home": "Mask Stalls",
+      "icon": "🎭",
+      "blurb": "Sells faces that remember other lives. Deals in essence and secrets.",
+      "dialog": [
+        {
+          "id": "root",
+          "text": "Masks for every fate. Yours still clings to uncertainty.",
+          "choices": [
+            { "id": "ask_work", "label": "Ask about work", "next": "work", "effect": { "quest_offer": "maskmonger_moon_essence" } },
+            { "id": "ask_masks", "label": "Ask about masks", "next": "masks_info" },
+            { "id": "turnin_path", "label": "I have the essence", "next": "turn_in" }
+          ]
+        },
+        {
+          "id": "masks_info",
+          "text": "Each mask borrows a name from the night. Wear one, and the night may wear you back.",
+          "choices": [
+            { "id": "back", "label": "Back", "next": "root" }
+          ]
+        },
+        {
+          "id": "work",
+          "text": "Collect three threads of Moon Essence. Distill them from the warm air where lanterns hum.",
+          "choices": [
+            { "id": "agree", "label": "I will bring you the essence", "next": "root" }
+          ]
+        },
+        {
+          "id": "turn_in",
+          "text": "You return. The air around your hands glows faintly. Three threads? Hand them over.",
+          "choices": [
+            { "id": "hand_over", "label": "Give the essence", "next": "thanks", "effect": { "complete_quest": "maskmonger_moon_essence" } },
+            { "id": "keep", "label": "Keep them", "next": "root", "effect": { "reputation_delta": -1 } }
+          ]
+        },
+        {
+          "id": "thanks",
+          "text": "A fair trade. Take this Whispering Mask, and keep your shadow tidy.",
+          "choices": [
+            { "id": "done", "label": "Nod", "end": true, "effect": { "inventory_add": ["Whispering Mask"], "reputation_delta": 2, "add_perk": "lunar_blade" } }
+          ]
+        }
+      ]
+    },
+  
+    {
+      "id": "gate_twins",
+      "name": "Gate Twins",
+      "home": "Moon Gate",
+      "icon": "🌙",
+      "blurb": "Two voices in one breath. They keep the gate and count the debts.",
+      "dialog": [
+        {
+          "id": "root",
+          "text": "Two voices in one breath: \"The Moon Gate opens and closes on debts.\"",
+          "choices": [
+            { "id": "greet", "label": "Greet politely", "next": "hint", "effect": { "reputation_delta": 1 } },
+            { "id": "ask_price", "label": "Ask the price to pass", "next": "toll" },
+            { "id": "leave", "label": "Leave", "end": true }
+          ]
+        },
+        {
+          "id": "hint",
+          "text": "Seek essence among humming lanterns—trade with care.",
+          "choices": [
+            { "id": "back", "label": "Back", "next": "root" }
+          ]
+        },
+        {
+          "id": "toll",
+          "text": "A name, a promise, or three threads of light. The Gate is patient.",
+          "choices": [
+            { "id": "offer_promise", "label": "Offer a harmless promise", "next": "root", "effect": { "reputation_delta": 1 } },
+            { "id": "decline", "label": "Back away", "next": "root" }
+          ]
+        }
+      ]
+    },
+  
+    {
+      "id": "shadow_broker",
+      "name": "The Shadow Broker",
+      "home": "Shadow Lane",
+      "icon": "🕶️",
+      "blurb": "Buys and sells things that follow you. Prefers secrets paid in footsteps.",
+      "dialog": [
+        {
+          "id": "root",
+          "text": "Your shadow looks restless. I can teach it to step sideways.",
+          "choices": [
+            { "id": "learn_step", "label": "Learn a trick (Shadow Step)", "next": "teach", "effect": { "reputation_delta": -1, "add_perk": "shadow_step" } },
+            { "id": "ask_trade", "label": "Ask what you buy", "next": "trade" },
+            { "id": "leave", "label": "Leave", "end": true }
+          ]
+        },
+        {
+          "id": "teach",
+          "text": "Lean with the breath between lanterns. Move when the crowd blinks.",
+          "choices": [
+            { "id": "done", "label": "Practice in silence", "end": true }
+          ]
+        },
+        {
+          "id": "trade",
+          "text": "Names with cracks, footprints that loop, coins that refuse to ring.",
+          "choices": [
+            { "id": "back", "label": "Back", "next": "root" }
+          ]
+        }
+      ]
+    },
+  
+    {
+      "id": "candle_scribe",
+      "name": "Candle Scribe",
+      "home": "Oracle Tent",
+      "icon": "🕯️",
+      "blurb": "Writes wishes in smoke. Teaches the mind to hold while the night shivers.",
+      "dialog": [
+        {
+          "id": "root",
+          "text": "Steady your breath. Let the night tremble instead.",
+          "choices": [
+            { "id": "ask_lesson", "label": "Ask for a lesson (Iron Will)", "next": "lesson", "effect": { "add_perk": "iron_will" } },
+            { "id": "ask_prophecy", "label": "Ask for a small prophecy", "next": "prophecy" },
+            { "id": "leave", "label": "Leave", "end": true }
+          ]
+        },
+        {
+          "id": "lesson",
+          "text": "When fear arrives, count the widths of a candle. Let sharp thoughts pass you by.",
+          "choices": [
+            { "id": "done", "label": "Bow", "end": true }
+          ]
+        },
+        {
+          "id": "prophecy",
+          "text": "Your path knots near humming lanterns. Debt waits at a gate that knows your name.",
+          "choices": [
+            { "id": "back", "label": "Back", "next": "root" }
+          ]
+        }
+      ]
+    }
+  ]
+  

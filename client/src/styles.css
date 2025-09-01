@@ -1,0 +1,13 @@
+:root { color-scheme: dark; }
+a { text-decoration: underline; }
+textarea { resize: vertical; }
+
+/* Glow animation for the Story panel */
+@keyframes glow {
+  0%   { box-shadow: 0 0 0px rgba(16,185,129,0.0); }
+  50%  { box-shadow: 0 0 24px rgba(16,185,129,0.35); }
+  100% { box-shadow: 0 0 0px rgba(16,185,129,0.0); }
+}
+.glow {
+  animation: glow 2.4s ease-in-out infinite;
+}

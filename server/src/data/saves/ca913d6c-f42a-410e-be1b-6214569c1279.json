@@ -1,0 +1,111 @@
+{
+  "player": {
+    "name": "Wanderer",
+    "health": 100,
+    "reputation": 0
+  },
+  "quests": [],
+  "history": [
+    {
+      "action": null,
+      "narrative": "Under the full moon, you arrive at the Pasar Goib.\nThe Gate Twins glance your way."
+    },
+    {
+      "action": "look around",
+      "narrative": "The bazaar murmurs under a heavy moon.\nYou look around. (d20 4 – fail)"
+    },
+    {
+      "action": "inventory",
+      "narrative": "You check your belongings: (empty).\nReputation: 0",
+      "roll": {
+        "value": 7,
+        "meaning": "fail"
+      }
+    },
+    {
+      "action": "talk to Gate Twins",
+      "narrative": "Gate Twins: \"Mind your bargains, wanderer.\"",
+      "roll": {
+        "value": 13,
+        "meaning": "partial"
+      }
+    }
+  ],
+  "location": "gate",
+  "inventory": [],
+  "flags": {},
+  "npcs": {
+    "maskmonger": {
+      "id": "maskmonger",
+      "name": "Maskmonger",
+      "location": "mask_alley",
+      "affinity": 0,
+      "persona": "Cryptic vendor of fate-bound masks.",
+      "dialog": [
+        {
+          "id": "root",
+          "text": "Masks for every fate. Care to browse or seeking work?",
+          "choices": [
+            {
+              "id": "buy_plain",
+              "label": "Buy a Plain Mask (demo)",
+              "effect": {
+                "inventory_add": [
+                  "Plain Mask"
+                ],
+                "reputation_delta": 1
+              }
+            },
+            {
+              "id": "ask_job",
+              "label": "Ask about work",
+              "effect": {
+                "quest_offer": "shadow_run"
+              }
+            }
+          ]
+        },
+        {
+          "id": "accepted_work",
+          "text": "Bring me three slivers of Moon-essence from Lantern Row.",
+          "choices": [
+            {
+              "id": "ack",
+              "label": "Got it",
+              "effect": {}
+            }
+          ]
+        }
+      ]
+    },
+    "gate_twins": {
+      "id": "gate_twins",
+      "name": "Gate Twins",
+      "location": "gate",
+      "affinity": 0,
+      "persona": "Two siblings who watch the bazaar entrances.",
+      "dialog": [
+        {
+          "id": "root",
+          "text": "Mind your bargains, wanderer.",
+          "choices": [
+            {
+              "id": "nod",
+              "label": "Nod respectfully",
+              "effect": {
+                "reputation_delta": 1
+              }
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "map": {},
+  "suggested": [
+    "look around",
+    "inventory",
+    "talk to Maskmonger",
+    "talk to Gate Twins"
+  ]
+}

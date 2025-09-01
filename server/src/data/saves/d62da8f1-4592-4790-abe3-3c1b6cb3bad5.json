@@ -1,0 +1,230 @@
+{
+  "player": {
+    "name": "Wanderer",
+    "health": 100,
+    "reputation": 0,
+    "stats": {
+      "str": 1,
+      "dex": 1,
+      "int": 1,
+      "points": 0
+    }
+  },
+  "location": "moon_gate",
+  "map": {
+    "moon_gate": {
+      "name": "Moon Gate",
+      "exits": [
+        "spirit_bazaar",
+        "exit_road"
+      ]
+    },
+    "spirit_bazaar": {
+      "name": "Spirit Bazaar",
+      "exits": [
+        "mask_stalls",
+        "shadow_lane",
+        "oracle_tent",
+        "moon_gate"
+      ]
+    },
+    "mask_stalls": {
+      "name": "Mask Stalls",
+      "exits": [
+        "spirit_bazaar"
+      ]
+    },
+    "shadow_lane": {
+      "name": "Shadow Lane",
+      "exits": [
+        "spirit_bazaar"
+      ]
+    },
+    "oracle_tent": {
+      "name": "Oracle Tent",
+      "exits": [
+        "spirit_bazaar"
+      ]
+    },
+    "exit_road": {
+      "name": "Old Road",
+      "exits": [
+        "moon_gate"
+      ]
+    }
+  },
+  "npcs": {
+    "gate_twins": {
+      "id": "gate_twins",
+      "name": "Gate Twins",
+      "location": "moon_gate",
+      "affinity": 0,
+      "dialog": [
+        {
+          "id": "root",
+          "text": "Two voices in one breath: 'The Moon Gate opens and closes on debts.'",
+          "choices": [
+            {
+              "id": "greet",
+              "label": "Greet politely",
+              "next": "hint",
+              "effect": {
+                "reputation_delta": 1
+              }
+            },
+            {
+              "id": "leave",
+              "label": "Leave",
+              "end": true
+            }
+          ]
+        },
+        {
+          "id": "hint",
+          "text": "Seek essence among humming lanterns—trade with care.",
+          "choices": [
+            {
+              "id": "back",
+              "label": "Back",
+              "next": "root"
+            }
+          ]
+        }
+      ]
+    },
+    "maskmonger": {
+      "id": "maskmonger",
+      "name": "Maskmonger",
+      "location": "mask_stalls",
+      "affinity": 0,
+      "dialog": [
+        {
+          "id": "root",
+          "text": "Masks for every fate. Yours still clings to uncertainty.",
+          "choices": [
+            {
+              "id": "ask_work",
+              "label": "Ask about work",
+              "next": "work",
+              "effect": {
+                "quest_offer": "maskmonger_moon_essence"
+              }
+            },
+            {
+              "id": "ask_masks",
+              "label": "Ask about masks",
+              "next": "masks_info"
+            }
+          ]
+        },
+        {
+          "id": "masks_info",
+          "text": "Each mask borrows a name from the night. Wear one, and the night may wear you back.",
+          "choices": [
+            {
+              "id": "back",
+              "label": "Back",
+              "next": "root"
+            }
+          ]
+        },
+        {
+          "id": "work",
+          "text": "Collect three threads of Moon Essence. Distill them from the warm air where lanterns hum.",
+          "choices": [
+            {
+              "id": "agree",
+              "label": "I will bring you the essence",
+              "next": "root"
+            }
+          ]
+        },
+        {
+          "id": "turn_in",
+          "text": "You return. The air around your hands glows faintly. Three threads? Hand them over.",
+          "choices": [
+            {
+              "id": "hand_over",
+              "label": "Give the essence",
+              "next": "thanks",
+              "effect": {
+                "complete_quest": "maskmonger_moon_essence"
+              }
+            },
+            {
+              "id": "keep",
+              "label": "Keep them",
+              "next": "root",
+              "effect": {
+                "reputation_delta": -1
+              }
+            }
+          ]
+        },
+        {
+          "id": "thanks",
+          "text": "A fair trade. Take this Whispering Mask, and keep your shadow tidy.",
+          "choices": [
+            {
+              "id": "done",
+              "label": "Nod",
+              "end": true,
+              "effect": {
+                "inventory_add": [
+                  "Whispering Mask"
+                ],
+                "reputation_delta": 2
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "shadow_broker": {
+      "id": "shadow_broker",
+      "name": "The Shadow Broker",
+      "location": "shadow_lane",
+      "affinity": 0
+    },
+    "candle_scribe": {
+      "id": "candle_scribe",
+      "name": "Candle Scribe",
+      "location": "oracle_tent",
+      "affinity": 0
+    }
+  },
+  "inventory": [],
+  "quests": [],
+  "flags": {
+    "essence_count": 0
+  },
+  "history": [
+    {
+      "action": "talk to Gate Twins",
+      "narrative": "Gate Twins: Two voices in one breath: 'The Moon Gate opens and closes on debts.'\nChoices: Greet politely | Leave",
+      "roll": {
+        "value": 7,
+        "meaning": "fail"
+      }
+    }
+  ],
+  "lore": "A night market appears under a full moon; trades run on names, memories, and shadows.",
+  "suggested": [
+    "go to spirit bazaar",
+    "talk to Gate Twins",
+    "search for moon essence"
+  ],
+  "effects": {},
+  "ui": {
+    "dialog": {
+      "npcId": "gate_twins",
+      "nodeId": "root"
+    }
+  },
+  "presence": {
+    "r83vGuFPU2rvFpTyAAAL": {
+      "id": "r83vGuFPU2rvFpTyAAAL",
+      "name": "Wanderer"
+    }
+  }
+}

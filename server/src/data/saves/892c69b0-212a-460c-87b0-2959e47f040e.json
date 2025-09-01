@@ -1,0 +1,94 @@
+{
+  "player": {
+    "name": "Wanderer",
+    "health": 100,
+    "reputation": 0,
+    "stats": {
+      "str": 1,
+      "dex": 1,
+      "int": 1,
+      "points": 0
+    }
+  },
+  "location": "moon_gate",
+  "map": {
+    "moon_gate": {
+      "name": "Moon Gate",
+      "exits": [
+        "spirit_bazaar",
+        "exit_road"
+      ]
+    },
+    "spirit_bazaar": {
+      "name": "Spirit Bazaar",
+      "exits": [
+        "mask_stalls",
+        "shadow_lane",
+        "oracle_tent",
+        "moon_gate"
+      ]
+    },
+    "mask_stalls": {
+      "name": "Mask Stalls",
+      "exits": [
+        "spirit_bazaar"
+      ]
+    },
+    "shadow_lane": {
+      "name": "Shadow Lane",
+      "exits": [
+        "spirit_bazaar"
+      ]
+    },
+    "oracle_tent": {
+      "name": "Oracle Tent",
+      "exits": [
+        "spirit_bazaar"
+      ]
+    },
+    "exit_road": {
+      "name": "Old Road",
+      "exits": [
+        "moon_gate"
+      ]
+    }
+  },
+  "npcs": {
+    "gate_twins": {
+      "id": "gate_twins",
+      "name": "Gate Twins",
+      "location": "moon_gate",
+      "affinity": 0
+    },
+    "maskmonger": {
+      "id": "maskmonger",
+      "name": "Maskmonger",
+      "location": "mask_stalls",
+      "affinity": 0
+    },
+    "shadow_broker": {
+      "id": "shadow_broker",
+      "name": "The Shadow Broker",
+      "location": "shadow_lane",
+      "affinity": 0
+    },
+    "candle_scribe": {
+      "id": "candle_scribe",
+      "name": "Candle Scribe",
+      "location": "oracle_tent",
+      "affinity": 0
+    }
+  },
+  "inventory": [],
+  "quests": [],
+  "flags": {
+    "essence_count": 0
+  },
+  "history": [],
+  "lore": "A night market appears under a full moon; trades run on names, memories, and shadows.",
+  "suggested": [
+    "go to spirit bazaar",
+    "talk to Gate Twins",
+    "search for moon essence"
+  ]
+}
