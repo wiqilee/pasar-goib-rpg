@@ -6,8 +6,18 @@ import StatBadge from '../components/StatBadge.jsx';
 import DialogPanel from '../components/DialogPanel.jsx';
 import { api } from '../lib/api.js';
 
-// Single socket instance for the app (Vite HMR-safe enough for our use)
-const socket = io('http://localhost:1573', { autoConnect: true });
+// ---- Socket init (dynamic for local vs GitHub Pages demo) ----
+// - LOCAL: gunakan env VITE_SOCKET_URL atau fallback ke 127.0.0.1:1573
+// - PROD/DEMO (GitHub Pages): jangan auto-connect (pakai no-op socket) agar UI tetap jalan tanpa server
+const isLocalHost = ['localhost', '127.0.0.1'].includes(window.location.hostname);
+const SOCKET_URL =
+  import.meta.env.VITE_SOCKET_URL ||
+  (isLocalHost ? 'http://127.0.0.1:1573' : undefined);
+
+// Jika tidak ada SOCKET_URL (mis. GitHub Pages), buat objek socket no-op biar tidak error
+const socket = SOCKET_URL
+  ? io(SOCKET_URL, { autoConnect: true })
+  : { on() {}, off() {}, emit() {} };
 
 export default function Play() {
   const [sessionId, setSessionId] = useState(() => crypto.randomUUID());
